@@ -157,7 +157,7 @@ public class formClientes extends javax.swing.JPanel {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         
-        formClienteAdd regClient = new formClienteAdd(sysUser);
+        formRegistroEntradasAdd1 regClient = new formRegistroEntradasAdd1(sysUser);
         regClient.setVisible(true);
         
         

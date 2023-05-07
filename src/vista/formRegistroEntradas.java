@@ -37,14 +37,14 @@ public class formRegistroEntradas extends javax.swing.JPanel {
     }
     
     public static void getEntradas(){
-        EntradaDAO cliDAO = new EntradaDAO();
-        List<Entrada> clientes = cliDAO.listar();
+        EntradaDAO entraDAO = new EntradaDAO();
+        List<Entrada> entrada = entraDAO.listar();
 
         DefaultTableModel model = (DefaultTableModel) tabListaEntradas.getModel();
         tabListaEntradas.removeAll();
         model.setRowCount(0);
         
-        for(Entrada cli :clientes){
+        for(Entrada cli :entrada){
             
             model.addRow(new String[]{String.valueOf(cli.getIdEntradaProducto()), cli.getCodigo(), String.valueOf(cli.getIdProveedor()), String.valueOf(cli.getFechaEntrada()), 
                 String.valueOf(cli.getSubtotal()), String.valueOf(cli.getValorIva()), String.valueOf(cli.getValorDescuento()), String.valueOf(cli.getTotal())
@@ -130,7 +130,7 @@ public class formRegistroEntradas extends javax.swing.JPanel {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         
         int fila = tabListaEntradas.getSelectedRow();
-        Entrada client = new Entrada();
+        Entrada entra = new Entrada();
         EntradaDAO cliDAO = new EntradaDAO();
 
         if(fila >= 0){
@@ -139,11 +139,11 @@ public class formRegistroEntradas extends javax.swing.JPanel {
             int res = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el registro?");
             
             if(res == 0){
-                client.setIdEntradaProducto(Integer.valueOf(id));
-                client.setEstado(0);
-                client.setFechaElimina(LocalDateTime.now());
-                client.setUsuarioElimina(sysUser.getUsername());
-                cliDAO.eliminar(client);
+                entra.setIdEntradaProducto(Integer.valueOf(id));
+                entra.setEstado(0);
+                entra.setFechaElimina(LocalDateTime.now());
+                entra.setUsuarioElimina(sysUser.getUsername());
+                cliDAO.eliminar(entra);
                 getEntradas();
             }            
 
@@ -155,8 +155,10 @@ public class formRegistroEntradas extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        formRegistroEntradasAdd1 entra = new formRegistroEntradasAdd1(sysUser);
+        entra.setVisible(true);
         
-        //formEntradaAdd regClient = new formEntradaAdd(sysUser);
+//formEntradaAdd regClient = new formEntradaAdd(sysUser);
         //regClient.setVisible(true);
         
         
@@ -167,8 +169,8 @@ public class formRegistroEntradas extends javax.swing.JPanel {
         int fila = tabListaEntradas.getSelectedRow();
         if(fila >= 0){
             String id = (String) tabListaEntradas.getValueAt(fila, 0);
-            //formEntradaEdit editClient = new formEntradaEdit(id, sysUser);
-            //editClient.setVisible(true);
+            formRegistroEntradasEdit editClient = new formRegistroEntradasEdit(id, sysUser);
+            editClient.setVisible(true);
             
         }else{
 

@@ -4,8 +4,8 @@
  */
 package vista;
 
-import DAO.EntradaDAO;
-import Modelo.Entrada;
+import DAO.SalidaDAO;
+import Modelo.Salida;
 import Modelo.Usuario;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -32,21 +32,21 @@ public class formRegistroSalidas extends javax.swing.JPanel {
     public formRegistroSalidas(Usuario user) {
         initComponents();
         this.sysUser = user;
-        getEntradas();
+        getS();
         
     }
     
-    public static void getEntradas(){
-        EntradaDAO cliDAO = new EntradaDAO();
-        List<Entrada> clientes = cliDAO.listar();
+    public static void getS(){
+        SalidaDAO cliDAO = new SalidaDAO();
+        List<Salida> clientes = cliDAO.listar();
 
         DefaultTableModel model = (DefaultTableModel) tabListaSalidas.getModel();
         tabListaSalidas.removeAll();
         model.setRowCount(0);
         
-        for(Entrada cli :clientes){
+        for(Salida cli :clientes){
             
-            model.addRow(new String[]{String.valueOf(cli.getIdEntradaProducto()), cli.getCodigo(), String.valueOf(cli.getIdProveedor()), String.valueOf(cli.getFechaEntrada()), 
+            model.addRow(new String[]{String.valueOf(cli.getIdSalidaProducto()), cli.getCodigo(), String.valueOf(cli.getIdCliente()), String.valueOf(cli.getFechaSalida()), 
                 String.valueOf(cli.getSubtotal()), String.valueOf(cli.getValorIva()), String.valueOf(cli.getValorDescuento()), String.valueOf(cli.getTotal())
             });
             
@@ -130,8 +130,8 @@ public class formRegistroSalidas extends javax.swing.JPanel {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         
         int fila = tabListaSalidas.getSelectedRow();
-        Entrada client = new Entrada();
-        EntradaDAO cliDAO = new EntradaDAO();
+        Salida client = new Salida();
+        SalidaDAO cliDAO = new SalidaDAO();
 
         if(fila >= 0){
             
@@ -139,12 +139,12 @@ public class formRegistroSalidas extends javax.swing.JPanel {
             int res = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el registro?");
             
             if(res == 0){
-                client.setIdEntradaProducto(Integer.valueOf(id));
+                client.setIdSalidaProducto(Integer.valueOf(id));
                 client.setEstado(0);
                 client.setFechaElimina(LocalDateTime.now());
                 client.setUsuarioElimina(sysUser.getUsername());
                 cliDAO.eliminar(client);
-                getEntradas();
+               getS();
             }            
 
         }else{
@@ -156,8 +156,8 @@ public class formRegistroSalidas extends javax.swing.JPanel {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         
-        //formEntradaAdd regClient = new formEntradaAdd(sysUser);
-        //regClient.setVisible(true);
+        formRegistroSalidasAdd regClient = new formRegistroSalidasAdd(sysUser);
+        regClient.setVisible(true);
         
         
     }//GEN-LAST:event_btnNuevoActionPerformed

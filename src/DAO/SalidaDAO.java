@@ -24,17 +24,17 @@ public class SalidaDAO implements ISalidaInventario{
     DataBase bd = new DataBase();
     @Override
     public Boolean registrar(Salida salida) {
-        String sql = "INSERT INTO salidaproducto(`codigo`, `idCliente`, `fechaEntrada`, `subtotal`, `valorIva`, `valorDescuento`, `total`, `estado`, `fechaIngreso`, `usuarioIngreso`, `fechaModifica`, `usuarioModifica`, `fechaElimina`, `usuarioElimina`)"
+        String sql = "INSERT INTO salidaproducto(`Codigo`, `idCliente`, `fechaSalida`, `subtotal`, `valorIva`, `valorDescuento`, `total`, `estado`, `fechaIngreso`, `usuarioIngreso`, `fechaModifica`, `usuarioModifica`, `fechaElimina`, `usuarioElimina`)"
                 + " VALUES('"
                 + salida.getCodigo()+"','"
                 + salida.getIdCliente()+"','"
-                + salida.getFechaSalida().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+"','"
+                + salida.getFechaSalida().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"','"
                 + salida.getSubtotal()+"','"
                 + salida.getValorIva()+"','"
                 + salida.getValorDescuento()+"','"
                 + salida.getTotal()+"','"
                 + salida.getEstado()+"','"
-                + salida.getFechaIngreso().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+"','"
+                + salida.getFechaIngreso().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"','"
                 + salida.getUsuarioIngreso()+"', "
                 + null+", "
                 + null+", "
@@ -48,16 +48,16 @@ public class SalidaDAO implements ISalidaInventario{
 
     @Override
     public Boolean modificar(Salida salida) {
-        String sql = "UPDATE salidaproducto SET codigo='"
-                + salida.getCodigo()+"',idproveedor='"
-                + salida.getIdCliente()+"',fechaEntrada='"
+        String sql = "UPDATE salidaproducto SET Codigo='"
+                + salida.getCodigo()+"',idCliente='"
+                + salida.getIdCliente()+"',fechaSalida='"
                 + salida.getFechaSalida()+"',subtotal='"
                 + salida.getSubtotal()+"',valorIva='"
                 + salida.getValorIva()+"',valorDescuento='"
                 + salida.getValorDescuento()+"',total='"
                 + salida.getTotal()+"',fechaModifica='"
-                + salida.getFechaModifica().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+"',usuarioModifica='"
-                + salida.getUsuarioModifica()+"' WHERE idEntradaProducto="
+                + salida.getFechaModifica().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"',usuarioModifica='"
+                + salida.getUsuarioModifica()+"' WHERE idSalidaProducto="
                 + salida.getIdSalidaProducto();
         
         if(bd.update(sql) > 0){
@@ -70,8 +70,8 @@ public class SalidaDAO implements ISalidaInventario{
     public Boolean eliminar(Salida salida) {
         String sql = "UPDATE salidaproducto SET estado='"
                 + salida.getEstado()+"',fechaElimina='"
-                + salida.getFechaElimina().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+"',usuarioElimina='"
-                + salida.getUsuarioElimina()+"' WHERE idEntradaProducto="
+                + salida.getFechaElimina().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"',usuarioElimina='"
+                + salida.getUsuarioElimina()+"' WHERE idSalidaProducto="
                 + salida.getIdSalidaProducto();
         
         if(bd.update(sql) > 0){
@@ -87,12 +87,12 @@ public class SalidaDAO implements ISalidaInventario{
         List<Salida> salidas = new ArrayList();
         for(Map row : rows){
             Salida ent = new Salida();
-            ent.setIdSalidaProducto((int) row.get("idEntradaProducto"));
-            ent.setCodigo((String) row.get("codigo"));
-            ent.setIdCliente((String) row.get("idCliente"));
-            ent.setFechaSalida((LocalDate) row.get("fechaSalida"));
+            ent.setIdSalidaProducto((int) row.get("idSalidaProducto"));
+            ent.setCodigo((String) row.get("Codigo"));
+            ent.setIdCliente(String.valueOf( row.get("idCliente")));
+            ent.setFechaSalida(LocalDate.parse(row.get("fechaSalida").toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             ent.setSubtotal((float) row.get("subtotal"));
-            ent.setValorIva((float) row.get("valoIva"));
+            ent.setValorIva((int) row.get("valorIva"));
             ent.setValorDescuento((float) row.get("valorDescuento"));
             ent.setTotal((float) row.get("total"));
             salidas.add(ent);
@@ -107,11 +107,11 @@ public class SalidaDAO implements ISalidaInventario{
         Salida ent = new Salida();
         for(Map da : data){
             ent.setIdSalidaProducto((int) da.get("idSalidaProducto"));
-            ent.setCodigo((String) da.get("codigo"));
-            ent.setIdCliente((String) da.get("idCliente"));
-            ent.setFechaSalida((LocalDate) da.get("fechaSalida"));
+            ent.setCodigo((String) da.get("Codigo"));
+            ent.setIdCliente(String.valueOf(da.get("idCliente")));
+            ent.setFechaSalida(LocalDate.parse(da.get("fechaSalida").toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             ent.setSubtotal((float) da.get("subtotal"));
-            ent.setValorIva((float) da.get("valoIva"));
+            ent.setValorIva((int) da.get("valorIva"));
             ent.setValorDescuento((float) da.get("valorDescuento"));
             ent.setTotal((float) da.get("total"));            
         }

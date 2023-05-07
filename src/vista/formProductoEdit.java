@@ -235,6 +235,11 @@ public class formProductoEdit extends javax.swing.JFrame {
 
         txtFechaCaducidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         txtFechaCaducidad.setText("dd/MM/yyyy");
+        txtFechaCaducidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaCaducidadActionPerformed(evt);
+            }
+        });
         panMain.add(txtFechaCaducidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 170, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -318,6 +323,10 @@ public class formProductoEdit extends javax.swing.JFrame {
     private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecioActionPerformed
+
+    private void txtFechaCaducidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaCaducidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaCaducidadActionPerformed
 
     /**
      * @param args the command line arguments

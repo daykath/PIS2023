@@ -27,13 +27,13 @@ public class EntradaDAO implements IEntradaInventario{
                 + " VALUES('"
                 + entrada.getCodigo()+"','"
                 + entrada.getIdProveedor()+"','"
-                + entrada.getFechaEntrada().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+"','"
+                + entrada.getFechaEntrada().format(DateTimeFormatter.ofPattern("yyyy-MM-dd "))+"','"
                 + entrada.getSubtotal()+"','"
                 + entrada.getValorIva()+"','"
                 + entrada.getValorDescuento()+"','"
                 + entrada.getTotal()+"','"
                 + entrada.getEstado()+"','"
-                + entrada.getFechaIngreso().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+"','"
+                + entrada.getFechaIngreso().format(DateTimeFormatter.ofPattern("yyyy-MM-dd "))+"','"
                 + entrada.getUsuarioIngreso()+"', "
                 + null+", "
                 + null+", "
@@ -48,14 +48,14 @@ public class EntradaDAO implements IEntradaInventario{
     @Override
     public Boolean modificar(Entrada entrada) {
         String sql = "UPDATE entradaproducto SET codigo='"
-                + entrada.getCodigo()+"',idproveedor='"
+                + entrada.getCodigo()+"',idProveedor='"
                 + entrada.getIdProveedor()+"',fechaEntrada='"
                 + entrada.getFechaEntrada()+"',subtotal='"
                 + entrada.getSubtotal()+"',valorIva='"
                 + entrada.getValorIva()+"',valorDescuento='"
                 + entrada.getValorDescuento()+"',total='"
                 + entrada.getTotal()+"',fechaModifica='"
-                + entrada.getFechaModifica().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+"',usuarioModifica='"
+                + entrada.getFechaModifica().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"',usuarioModifica='"
                 + entrada.getUsuarioModifica()+"' WHERE idEntradaProducto="
                 + entrada.getIdEntradaProducto();
         
@@ -69,7 +69,7 @@ public class EntradaDAO implements IEntradaInventario{
     public Boolean eliminar(Entrada entrada) {
         String sql = "UPDATE entradaproducto SET estado='"
                 + entrada.getEstado()+"',fechaElimina='"
-                + entrada.getFechaElimina().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))+"',usuarioElimina='"
+                + entrada.getFechaElimina().format(DateTimeFormatter.ofPattern("yyyy-MM-dd "))+"',usuarioElimina='"
                 + entrada.getUsuarioElimina()+"' WHERE idEntradaProducto="
                 + entrada.getIdEntradaProducto();
         
@@ -88,10 +88,10 @@ public class EntradaDAO implements IEntradaInventario{
             Entrada ent = new Entrada();
             ent.setIdEntradaProducto((int) row.get("idEntradaProducto"));
             ent.setCodigo((String) row.get("codigo"));
-            ent.setIdProveedor((String) row.get("idProvedor"));
-            ent.setFechaEntrada((LocalDate) row.get("fechaEntrada"));
+            ent.setIdProveedor(String.valueOf(row.get("idProveedor")));
+            ent.setFechaEntrada(LocalDate.parse(row.get("fechaEntrada").toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             ent.setSubtotal((float) row.get("subtotal"));
-            ent.setValorIva((float) row.get("valoIva"));
+            ent.setValorIva((int) row.get("valorIva"));
             ent.setValorDescuento((float) row.get("valorDescuento"));
             ent.setTotal((float) row.get("total"));
             entradas.add(ent);
@@ -107,10 +107,10 @@ public class EntradaDAO implements IEntradaInventario{
         for(Map da : data){
             ent.setIdEntradaProducto((int) da.get("idEntradaProducto"));
             ent.setCodigo((String) da.get("codigo"));
-            ent.setIdProveedor((String) da.get("idProvedor"));
-            ent.setFechaEntrada((LocalDate) da.get("fechaEntrada"));
+            ent.setIdProveedor(String.valueOf(da.get("idProveedor")));
+            ent.setFechaEntrada(LocalDate.parse(da.get("fechaEntrada").toString(),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             ent.setSubtotal((float) da.get("subtotal"));
-            ent.setValorIva((float) da.get("valoIva"));
+            ent.setValorIva((int) da.get("valorIva"));
             ent.setValorDescuento((float) da.get("valorDescuento"));
             ent.setTotal((float) da.get("total"));            
         }

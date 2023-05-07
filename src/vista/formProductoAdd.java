@@ -203,6 +203,12 @@ public class formProductoAdd extends javax.swing.JFrame {
         labCodigo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labCodigo.setText("Código");
         panMain.add(labCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        listPorcentajeIva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listPorcentajeIvaActionPerformed(evt);
+            }
+        });
         panMain.add(listPorcentajeIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 200, 30));
 
         listCategoria.addActionListener(new java.awt.event.ActionListener() {
@@ -223,6 +229,11 @@ public class formProductoAdd extends javax.swing.JFrame {
 
         txtFechaCaducidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         txtFechaCaducidad.setText("dd/MM/yyyy");
+        txtFechaCaducidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaCaducidadActionPerformed(evt);
+            }
+        });
         panMain.add(txtFechaCaducidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 170, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -308,6 +319,14 @@ public class formProductoAdd extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_listCategoriaActionPerformed
 
+    private void txtFechaCaducidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaCaducidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaCaducidadActionPerformed
+
+    private void listPorcentajeIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listPorcentajeIvaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listPorcentajeIvaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -361,7 +380,7 @@ public class formProductoAdd extends javax.swing.JFrame {
     private javax.swing.JLabel labTitle;
     private javax.swing.JComboBox<Categoria> listCategoria;
     private javax.swing.JComboBox<Medida> listMedida;
-    private javax.swing.JComboBox<Iva> listPorcentajeIva;
+    private javax.swing.JComboBox<Modelo.Iva> listPorcentajeIva;
     private javax.swing.JPanel panMain;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextArea txtDescripcion;

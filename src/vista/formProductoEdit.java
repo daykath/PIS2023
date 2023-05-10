@@ -222,6 +222,12 @@ public class formProductoEdit extends javax.swing.JFrame {
         labCodigo.setText("Código");
         panMain.add(labCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
         panMain.add(listPorcentajeIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 200, 30));
+
+        listCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listCategoriaActionPerformed(evt);
+            }
+        });
         panMain.add(listCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 200, 30));
 
         labDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -327,6 +333,10 @@ public class formProductoEdit extends javax.swing.JFrame {
     private void txtFechaCaducidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaCaducidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaCaducidadActionPerformed
+
+    private void listCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listCategoriaActionPerformed
 
     /**
      * @param args the command line arguments

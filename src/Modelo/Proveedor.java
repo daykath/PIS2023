@@ -13,6 +13,18 @@ import java.time.LocalDateTime;
 public class Proveedor extends Externo{
     
     private int idProveedor;
+    private String primerNombre;
+
+    /*public Proveedor(int idProveedor, String primerNombre) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }*/
+     public Proveedor(){
+
+    }
+     public Proveedor(int idProveedor, String primerNombre){
+        this.idProveedor = idProveedor;
+        this.primerNombre = primerNombre;
+    }
 
 
     public int getIdProveedor() {
@@ -22,7 +34,19 @@ public class Proveedor extends Externo{
     public void setIdProveedor(int idProveedor) {
         this.idProveedor = idProveedor;
     }
+    @Override
+    public String getPrimerNombre() {
+        return primerNombre;
+    }
 
+    @Override
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = primerNombre;
+    }
+ public String toString(){
+        
+        return this.primerNombre; 
+    }
 
     
 }

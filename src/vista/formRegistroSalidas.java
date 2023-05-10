@@ -167,8 +167,8 @@ public class formRegistroSalidas extends javax.swing.JPanel {
         int fila = tabListaSalidas.getSelectedRow();
         if(fila >= 0){
             String id = (String) tabListaSalidas.getValueAt(fila, 0);
-            //formEntradaEdit editClient = new formEntradaEdit(id, sysUser);
-            //editClient.setVisible(true);
+            formRegistroSalidasEdit editClient = new formRegistroSalidasEdit(id, sysUser);
+            editClient.setVisible(true);
             
         }else{
 

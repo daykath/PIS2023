@@ -47,7 +47,6 @@ public class formRegistroEntradasAdd1 extends javax.swing.JFrame {
         jtxentrada.removeAllItems();
         for(Proveedor pro:prove){
             jtxentrada.addItem(new Proveedor(pro.getIdProveedor(), pro.getPrimerNombre()));
-            //jtxentrada.addItem(new Proveedor(String.valueOf(pro.getIdProveedor()), String.valueOf(pro.getPrimerNombre())));
         }    
     }
      public void getPorcentaje(){
@@ -56,6 +55,7 @@ public class formRegistroEntradasAdd1 extends javax.swing.JFrame {
         listIva.addItem(new Iva("0%",1));
         listIva.addItem(new Iva("12%",2));
      }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -239,6 +239,7 @@ public class formRegistroEntradasAdd1 extends javax.swing.JFrame {
            
             entra.setSubtotal(Float.parseFloat(txtSubTotal.getText()));
             entra.setValorIva((int) listIva.getItemAt(listIva.getSelectedIndex()).getValor());
+                       
            // entra.setTotal(Float.parseFloat(txtTotal.getText()));
             LocalDate fecha = LocalDate.parse(txtFecha2.getText(),DateTimeFormatter.ofPattern("dd/MM/yyyy")); 
             entra.setFechaEntrada(fecha);

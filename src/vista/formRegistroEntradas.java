@@ -32,10 +32,8 @@ public class formRegistroEntradas extends javax.swing.JPanel {
     public formRegistroEntradas(Usuario user) {
         initComponents();
         this.sysUser = user;
-        getEntradas();
-        
+        getEntradas();   
     }
-    
     public static void getEntradas(){
         EntradaDAO entraDAO = new EntradaDAO();
         List<Entrada> entrada = entraDAO.listar();
@@ -51,8 +49,9 @@ public class formRegistroEntradas extends javax.swing.JPanel {
             });
             
         }
-        
     }
+  
+     
     
     /**
      * This method is called from within the constructor to initialize the form.

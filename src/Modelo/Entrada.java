@@ -41,7 +41,6 @@ public class Entrada extends Movimiento{
     public void setFechaEntrada(LocalDate fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
-
     
     
 }
